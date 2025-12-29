@@ -1,13 +1,13 @@
-import { useState } from 'react'
-
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import MainPage from "./components/MainPage/MainPage";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-<></>
-  )
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
