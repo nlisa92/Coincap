@@ -3,9 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchCurrencies = createAsyncThunk(
     "currencies/fetchCurrencies",
     async () => {
-        const res = await fetch("https://api.coincap.io/v2/assets");
+        const res = await fetch('https://rest.coincap.io/v3/assets');
         const data = await res.json();
-        return data.data;
+        return res.data.data;
     }
 )
 const currenciesSlice = createSlice({
