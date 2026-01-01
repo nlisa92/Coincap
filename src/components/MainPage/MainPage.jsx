@@ -4,16 +4,16 @@ import { fetchCurrencies } from "../../store/slice/currenciesSlice";
 import CryptoTable from "./CryptoTable";
 
 const MainPage = () => {
-  const distpach = useDispatch();
-  const { list, status, error } = useSelector((state) => state.curencies);
+  const dispatch = useDispatch();
+  const { list, status, error } = useSelector((state) => state.currencies);
 
   useEffect(() => {
     if (status === "idle") {
-      distpach(fetchCurrencies);
+      dispatch(fetchCurrencies());
     }
-  }, [distpach, status]);
+  }, [dispatch, status]);
 
-  if (status === "Loading") {
+  if (status === "loading") {
     return <h2>Загрузка...</h2>;
   }
 
