@@ -7,6 +7,8 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { list, status, error } = useSelector((state) => state.currencies);
 
+  console.log("Redux state:", { list, status, error });
+
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchCurrencies());

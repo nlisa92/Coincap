@@ -10,6 +10,7 @@ export const fetchCurrencies = createAsyncThunk(
     });
 
     const data = await res.json();
+    console.log("API response:", data);
     return data.data;
   }
 );
@@ -27,6 +28,8 @@ const currenciesSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchCurrencies.fulfilled, (state, action) => {
+        console.log("Payload:", action.payload);
+
         state.status = "succeeded";
         state.list = action.payload;
       })
