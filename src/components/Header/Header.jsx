@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { formatCurrency } from "../../helpers/formatCurrency";
 
 const popular = ["bitcoin", "ethereum", "tether"];
 
@@ -11,7 +12,7 @@ const Header = () => {
       {popularCurrencies.map((item) => (
         <div key={item.id}>
           <span>{item.name}</span>
-          <span>{item.priceUsd}</span>
+          <span>{formatCurrency(item.priceUsd)}</span>
         </div>
       ))}
     </div>

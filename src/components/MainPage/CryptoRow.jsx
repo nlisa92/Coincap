@@ -1,5 +1,5 @@
 import ButtonAdd from "../Buttons/ButtonAdd";
-
+import { formatCurrency } from "../../helpers/formatCurrency";
 const CryptoRow = ({ currency, onAdd }) => {
   const {
     rank,
@@ -10,15 +10,6 @@ const CryptoRow = ({ currency, onAdd }) => {
     changePercent24Hr,
     vwap24Hr,
   } = currency;
-
-  const formatCurrency = (value) =>
-    value !== "null" && value !== "undefined"
-      ? Number(value).toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-          maximumFractionDigits: 2,
-        })
-      : "—";
 
   return (
     <tr>
