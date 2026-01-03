@@ -7,6 +7,7 @@ const CryptoTable = ({ currencies, onAdd }) => {
         <tr>
           <th>Rank</th>
           <th>Name</th>
+          <th>Market Cap</th>
           <th>Price</th>
           <th>Change</th>
           <th>Action</th>
