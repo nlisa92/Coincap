@@ -1,20 +1,28 @@
 import { useSelector } from "react-redux";
 import { formatCurrency } from "../../helpers/formatCurrency";
+import { WalletOutlined } from "@ant-design/icons";
 
 const popular = ["bitcoin", "ethereum", "tether"];
 
 const Header = () => {
   const { list } = useSelector((state) => state.currencies);
+  const { total, diff, diffPercent } = useSelector((state) => state.portfolio);
   const popularCurrencies = list.filter((item) => popular.includes(item.id));
   return (
     <div>
-      <h3>Популярные криптовалюты</h3>
-      {popularCurrencies.map((item) => (
-        <div key={item.id}>
-          <span>{item.name}</span>
-          <span>{formatCurrency(item.priceUsd)}</span>
-        </div>
-      ))}
+      <div>
+        <h3>Популярные криптовалюты</h3>
+        {popularCurrencies.map((item) => (
+          <div key={item.id}>
+            <span>{item.name}</span>
+            <span>{formatCurrency(item.priceUsd)}</span>
+          </div>
+        ))}
+      </div>
+      <div>
+        <WalletOutlined />
+        <span>Итого: {formatCurrency(total)}</span>
+      </div>
     </div>
   );
 };
