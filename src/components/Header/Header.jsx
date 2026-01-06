@@ -22,6 +22,15 @@ const Header = () => {
       <div>
         <WalletOutlined />
         <span>Итого: {formatCurrency(total)}</span>
+        <span
+          style={{
+            color: diffPercent >= 0 ? "green" : "red",
+            marginLeft: 8,
+          }}
+        >
+          {diffPercent >= 0 ? "+" : ""}
+          {diffPercent.toFixed(2)}
+        </span>
       </div>
     </div>
   );
