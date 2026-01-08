@@ -22,7 +22,7 @@ const CryptoRow = ({ currency, onAdd }) => {
       <td>{formatCurrency(priceUsd)}</td>
       <td>{Number(changePercent24Hr).toFixed(2)}%</td>
       <td>
-        <ButtonAdd onClick={onAdd} />
+        <ButtonAdd onClick={() => onAdd(currency)} />
       </td>
     </tr>
   );
