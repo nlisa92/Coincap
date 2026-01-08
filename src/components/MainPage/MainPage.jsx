@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrencies } from "../../store/slice/currenciesSlice";
 import { calculatePortfolio } from "../../helpers/calculatetPortfolio";
-import { updatePortfolioStats } from "../../store/slice/portfolioSlice";
+import {
+  updatePortfolioStats,
+  addCurrency,
+} from "../../store/slice/portfolioSlice";
+import AddCurrencyModal from "../AddCurrencyModal/AddCurrencyModal";
 import CryptoTable from "./CryptoTable";
 
 const MainPage = () => {
@@ -11,6 +15,8 @@ const MainPage = () => {
   const { items } = useSelector((state) => state.portfolio);
 
   console.log("Redux state:", { list, status, error });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPage = 10;
@@ -48,7 +54,23 @@ const MainPage = () => {
   return (
     <div>
       <h2>Криптовалюты</h2>
-      <CryptoTable currencies={curCurrencies} />
+      <CryptoTable
+        currencies={curCurrencies}
+        onAdd={(currency) => {
+          setSelectedCurrency(currency);
+          setIsModalOpen(true);
+        }}
+      />
+      <AddCurrencyModal
+        open={isModalOpen}
+        currency={selectedCurrency}
+        onCancel={() => setIsModalOpen(false)}
+        onOk={(newCurrency) => {
+          dispatch(addCurrency(newCurrency));
+          setIsModalOpen(false);
+          setSelectedCurrency(null);
+        }}
+      />
       <div>
         <button
           disabled={currentPage === 1}
