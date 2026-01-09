@@ -4,7 +4,7 @@ import { WalletOutlined } from "@ant-design/icons";
 
 const popular = ["bitcoin", "ethereum", "tether"];
 
-const Header = () => {
+const Header = ({ onOpenPortfolio }) => {
   const { list } = useSelector((state) => state.currencies);
   const { total, diff, diffPercent } = useSelector((state) => state.portfolio);
   const popularCurrencies = list.filter((item) => popular.includes(item.id));
@@ -19,7 +19,7 @@ const Header = () => {
           </div>
         ))}
       </div>
-      <div>
+      <div onClick={onOpenPortfolio}>
         <WalletOutlined />
         <span>Итого: {formatCurrency(total)}</span>
         <span
