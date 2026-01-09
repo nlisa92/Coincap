@@ -1,11 +1,9 @@
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
-const ButtonAdd = ({ onClick, children = "Добавить" }) => {
+const ButtonAdd = ({ onClick }) => {
   return (
-    <Button type="primary" icon={<PlusOutlined />} onClick={onClick}>
-      {children}
-    </Button>
+    <Button type="primary" icon={<PlusOutlined />} onClick={onClick}></Button>
   );
 };
 export default ButtonAdd;
