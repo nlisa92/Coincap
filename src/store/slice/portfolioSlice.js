@@ -14,8 +14,11 @@ const portfolioSlice = createSlice({
     setPortfolio(state, action) {
       state.items = action.payload;
     },
-    addCurrency: (state, action) => {
+    addCurrency(state, action) {
       state.items.push(action.payload);
+    },
+    removeCurrency(state, action) {
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
     updatePortfolioStats(state, action) {
       const { total, diff, diffPercent } = action.payload;
@@ -26,7 +29,11 @@ const portfolioSlice = createSlice({
   },
 });
 
-export const { setPortfolio, addCurrency, updatePortfolioStats } =
-  portfolioSlice.actions;
+export const {
+  setPortfolio,
+  addCurrency,
+  removeCurrency,
+  updatePortfolioStats,
+} = portfolioSlice.actions;
 
 export default portfolioSlice.reducer;
