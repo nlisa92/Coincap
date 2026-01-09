@@ -5,9 +5,12 @@ import { calculatePortfolio } from "../../helpers/calculatetPortfolio";
 import {
   updatePortfolioStats,
   addCurrency,
+  removeCurrency,
 } from "../../store/slice/portfolioSlice";
 import AddCurrencyModal from "../AddCurrencyModal/AddCurrencyModal";
 import CryptoTable from "./CryptoTable";
+import PortfolioModal from "../portfolioModal/PortfolioModal";
+import Header from "../header/Header";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -16,6 +19,7 @@ const MainPage = () => {
 
   console.log("Redux state:", { list, status, error });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,6 +57,13 @@ const MainPage = () => {
   }
   return (
     <div>
+      <Header onOpenPortfolio={() => setIsPortfolioOpen(true)} />
+      <PortfolioModal
+        open={isPortfolioOpen}
+        items={items}
+        onDelete={(id) => dispatch(removeCurrency(id))}
+        onClose={() => setIsPortfolioOpen(false)}
+      />
       <h2>Криптовалюты</h2>
       <CryptoTable
         currencies={curCurrencies}
