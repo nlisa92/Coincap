@@ -20,16 +20,26 @@ const Header = ({ onOpenPortfolio }) => {
       </div>
       <div onClick={onOpenPortfolio}>
         <WalletOutlined />
+
         <span>Итого: {formatCurrency(total)}</span>
-        <span
-          style={{
-            color: diffPercent >= 0 ? "green" : "red",
-            marginLeft: 8,
-          }}
-        >
-          {diffPercent >= 0 ? "+" : ""}
-          {diffPercent.toFixed(2)}
-        </span>
+
+        {total > 0 && (
+          <>
+            <span style={{ color: diff >= 0 ? "green" : "red", marginLeft: 8 }}>
+              {diff >= 0 ? "+" : ""} {formatCurrency(diff)}
+            </span>
+
+            <span
+              style={{
+                color: diffPercent >= 0 ? "green" : "red",
+                marginLeft: 8,
+              }}
+            >
+              {diffPercent >= 0 ? "+" : ""}
+              {diffPercent.toFixed(2)}%
+            </span>
+          </>
+        )}
       </div>
     </div>
   );
