@@ -11,7 +11,6 @@ const Header = ({ onOpenPortfolio }) => {
   return (
     <div>
       <div>
-        <h3>Популярные криптовалюты</h3>
         {popularCurrencies.map((item) => (
           <div key={item.id}>
             <span>{item.name}</span>

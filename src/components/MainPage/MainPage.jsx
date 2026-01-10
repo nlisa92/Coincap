@@ -64,7 +64,6 @@ const MainPage = () => {
         onDelete={(id) => dispatch(removeCurrency(id))}
         onClose={() => setIsPortfolioOpen(false)}
       />
-      <h2>Криптовалюты</h2>
       <CryptoTable
         currencies={curCurrencies}
         onAdd={(currency) => {
