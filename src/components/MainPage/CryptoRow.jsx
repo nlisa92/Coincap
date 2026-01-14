@@ -1,6 +1,13 @@
 import ButtonAdd from "../Buttons/ButtonAdd";
 import { formatCurrency } from "../../helpers/formatCurrency";
+import { useNavigate } from "react-router-dom";
+
 const CryptoRow = ({ currency, onAdd }) => {
+  const navidate = useNavigate();
+  const handleRowClick = () => {
+    navidate(`/currency/${currency.id}`);
+  };
+
   const {
     rank,
     name,
@@ -12,7 +19,7 @@ const CryptoRow = ({ currency, onAdd }) => {
   } = currency;
 
   return (
-    <tr>
+    <tr onClick={handleRowClick} style={{ cursor: "pointer" }}>
       <td>{rank}</td>
       <td>
         {name} ({symbol})
@@ -22,7 +29,12 @@ const CryptoRow = ({ currency, onAdd }) => {
       <td>{formatCurrency(priceUsd)}</td>
       <td>{Number(changePercent24Hr).toFixed(2)}%</td>
       <td>
-        <ButtonAdd onClick={() => onAdd(currency)} />
+        <ButtonAdd
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdd(currency);
+          }}
+        />
       </td>
     </tr>
   );
