@@ -19,7 +19,7 @@ const CryptoRow = ({ currency, onAdd }) => {
   } = currency;
 
   return (
-    <tr onClick={handleRowClick} style={{ cursor: "pointer" }}>
+    <tr onClick={handleRowClick} className="crypto-row" style={{ cursor: "pointer" }}>
       <td>{rank}</td>
       <td>
         {name} ({symbol})
