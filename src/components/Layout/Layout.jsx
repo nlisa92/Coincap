@@ -14,9 +14,23 @@ const Layout = () => {
   return (
     <>
       <Header onOpenPortfolio={() => setIsPortfolioOpen(true)} />
-      <main>
+      <main
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "32px 24px",
+          width: "100%",
+          minHeight: "calc(100vh - 64px)",
+          backgroundColor: "#ffffff",
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          gap: "32px",
+        }}
+      >
         <Outlet />
       </main>
+
       <PortfolioModal
         open={isPortfolioOpen}
         items={items}
