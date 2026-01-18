@@ -28,6 +28,18 @@ const CurrencyInfoTable = ({ currency }) => {
       label: "Объём торгов за 24ч",
       value: formatCurrency(currency.volumeUsd24Hr),
     },
+    {
+      key: "site",
+      label: "Сайт",
+      value: currency.explorer ? (
+        <a href={currency.explorer} target="_blank" rel="noopener noreferrer">
+          {" "}
+          {currency.explorer}
+        </a>
+      ) : (
+        "—"
+      ),
+    },
   ];
 
   const columns = [
