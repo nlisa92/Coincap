@@ -10,7 +10,6 @@ import {
 import AddCurrencyModal from "../AddCurrencyModal/AddCurrencyModal";
 import CryptoTable from "./CryptoTable";
 import PortfolioModal from "../portfolioModal/PortfolioModal";
-import Header from "../header/Header";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -57,7 +56,6 @@ const MainPage = () => {
   }
   return (
     <div>
-      <Header onOpenPortfolio={() => setIsPortfolioOpen(true)} />
       <PortfolioModal
         open={isPortfolioOpen}
         items={items}
