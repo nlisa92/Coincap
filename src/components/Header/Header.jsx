@@ -16,6 +16,7 @@ const Header = ({ onOpenPortfolio }) => {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "8px 0",
+        borderBottom: "1px solid #e5e5e5",
       }}
     >
       <div
