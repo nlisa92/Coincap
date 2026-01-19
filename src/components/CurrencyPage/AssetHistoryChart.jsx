@@ -1,5 +1,5 @@
 import { Line } from "@ant-design/charts";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChartData } from "../../store/slice/chartSlice";
 
@@ -13,15 +13,23 @@ const AssetHistoryChart = ({ slug }) => {
     }
   }, [slug, dispatch]);
 
-  const config = {
-    data,
-    xField: "date",
-    yField: "value",
-    smooth: true,
-    slider: { start: 0, end: 1 },
-    point: { size: 3 },
-    xAxis: { type: "time" },
-  };
+  const config = useMemo(
+    () => ({
+      data,
+      xField: "date",
+      yField: "value",
+      smooth: true,
+      slider: true,
+      point: { size: 3 },
+      xAxis: { type: "time" },
+      yAxis: {
+        label: {
+          formatter: (v) => Number(v),
+        },
+      },
+    }),
+    [data]
+  );
 
   return (
     <div>

@@ -33,7 +33,6 @@ const CurrencyInfoTable = ({ currency }) => {
       label: "Сайт",
       value: currency.explorer ? (
         <a href={currency.explorer} target="_blank" rel="noopener noreferrer">
-          {" "}
           {currency.explorer}
         </a>
       ) : (
@@ -44,12 +43,12 @@ const CurrencyInfoTable = ({ currency }) => {
 
   const columns = [
     {
-      title: "Параметр",
+      title: "Информация",
       dataIndex: "label",
       key: "label",
     },
     {
-      title: "Значение",
+      title: "Данные о валюте",
       dataIndex: "value",
       key: "value",
     },
