@@ -1,13 +1,18 @@
 import { useSelector } from "react-redux";
 import { formatCurrency } from "../../helpers/formatCurrency";
 import { WalletOutlined } from "@ant-design/icons";
-
-const popular = ["bitcoin", "ethereum", "tether"];
+import { selectPopularCurrencies } from "../../store/slice/currenciesSlice";
+import {
+  selectTotal,
+  selectDiff,
+  selectDiffPercent,
+} from "../../store/slice/portfolioSlice";
 
 const Header = ({ onOpenPortfolio }) => {
-  const { list } = useSelector((state) => state.currencies);
-  const { total, diff, diffPercent } = useSelector((state) => state.portfolio);
-  const popularCurrencies = list.filter((item) => popular.includes(item.id));
+  const popularCurrencies = useSelector(selectPopularCurrencies);
+  const total = useSelector(selectTotal);
+  const diff = useSelector(selectDiff);
+  const diffPercent = useSelector(selectDiffPercent);
 
   return (
     <div

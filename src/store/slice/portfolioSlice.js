@@ -27,6 +27,12 @@ const portfolioSlice = createSlice({
       state.diffPercent = diffPercent;
     },
   },
+  selectors: {
+    selectPortfolioItems: (state) => state.items,
+    selectTotal: (state) => state.total,
+    selectDiff: (state) => state.diff,
+    selectDiffPercent: (state) => state.diffPercent,
+  },
 });
 
 export const {
@@ -35,5 +41,12 @@ export const {
   removeCurrency,
   updatePortfolioStats,
 } = portfolioSlice.actions;
+
+export const {
+  selectPortfolioItems,
+  selectTotal,
+  selectDiff,
+  selectDiffPercent,
+} = portfolioSlice.selectors;
 
 export default portfolioSlice.reducer;

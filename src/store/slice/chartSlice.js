@@ -42,6 +42,12 @@ const chartSlice = createSlice({
         state.status = "failed";
       });
   },
+  selectors: {
+    selectData: (state) => state.data,
+    selectStatus: (state) => state.status,
+  },
 });
+
+export const { selectData, selectStatus } = chartSlice.selectors;
 
 export default chartSlice.reducer;

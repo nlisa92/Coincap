@@ -38,5 +38,22 @@ const currenciesSlice = createSlice({
         state.error = action.error.message;
       });
   },
+  selectors: {
+    selectCurrenciesList: (state) => state.list,
+    selectCurrenciesStatus: (state) => state.status,
+    selectCurrenciesError: (state) => state.error,
+    selectPopularCurrencies: (state) =>
+      state.list.filter((item) =>
+        ["bitcoin", "ethereum", "tether"].includes(item.id)
+      ),
+  },
 });
+
+export const {
+  selectCurrenciesList,
+  selectCurrenciesStatus,
+  selectCurrenciesError,
+  selectPopularCurrencies,
+} = currenciesSlice.selectors;
+
 export default currenciesSlice.reducer;

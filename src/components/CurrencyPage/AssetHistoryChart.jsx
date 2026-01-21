@@ -2,10 +2,12 @@ import { Line } from "@ant-design/charts";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChartData } from "../../store/slice/chartSlice";
+import { selectData, selectStatus } from "../../store/slice/chartSlice";
 
 const AssetHistoryChart = ({ slug }) => {
   const dispatch = useDispatch();
-  const { data, status } = useSelector((state) => state.chart);
+  const data = useSelector(selectData);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     if (slug) {
