@@ -1,21 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../api/api";
 
 export const fetchChartData = createAsyncThunk(
   "chart/fetchData",
   async (slug) => {
-    const res = await fetch(
-      `https://rest.coincap.io/v3/assets/${slug}/history?interval=d1`,
-      {
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_COINCAP_API_KEY}`,
-        },
-      }
+    const res = await api.get(
+      `https://rest.coincap.io/v3/assets/${slug}/history?interval=d1`
     );
 
-    const json = await res.json();
-
-    return json.data.map((item) => ({
+    return res.data.data.map((item) => ({
       date: new Date(item.date).getTime(),
       value: Number(item.priceUsd),
     }));
