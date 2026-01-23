@@ -1,17 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchCurrencies = createAsyncThunk(
   "currencies/fetchCurrencies",
   async () => {
-    const res = await fetch("https://rest.coincap.io/v3/assets", {
+    const res = await axios.get("https://rest.coincap.io/v3/assets", {
       headers: {
         Authorization: `Bearer ${import.meta.env.VITE_COINCAP_API_KEY}`,
       },
     });
-
-    const data = await res.json();
-    console.log("API response:", data);
-    return data.data;
+    return res.data.data;
   }
 );
 
