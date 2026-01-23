@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AddCurrencyModal from "../AddCurrencyModal/AddCurrencyModal";
 import CurrencyInfoTable from "./CurrencyInfoTable";
 import AssetHistoryChart from "./AssetHistoryChart";
-import { addCurrency } from "../../store/slice/portfolioSlice";
+import {
+  updatePortfolioStats,
+  addCurrency,
+} from "../../store/slice/portfolioSlice";
+import { calculatePortfolio } from "../../helpers/calculatetPortfolio";
 
 const CurrencyPage = () => {
   const { id } = useParams();
@@ -12,8 +16,23 @@ const CurrencyPage = () => {
   const dispatch = useDispatch();
 
   const { list } = useSelector((state) => state.currencies);
+  const { items } = useSelector((state) => state.portfolio);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState(null);
+
+  const stats = useMemo(() => {
+    if (list.length && items.length) {
+      return calculatePortfolio(items, list);
+    }
+    return null;
+  }, [list, items]);
+
+  useEffect(() => {
+    if (stats) {
+      dispatch(updatePortfolioStats(stats));
+    }
+  }, [stats, dispatch]);
 
   const currency = list.find((item) => item.id === id);
 
@@ -79,7 +98,7 @@ const CurrencyPage = () => {
           }}
         >
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
             style={{
               padding: "8px 16px",
               cursor: "pointer",

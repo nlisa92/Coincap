@@ -31,7 +31,7 @@ const MainPage = () => {
   }, [dispatch, status]);
 
   useEffect(() => {
-    if (list.length && items.length) {
+    if (list.length) {
       const stats = calculatePortfolio(items, list);
       dispatch(updatePortfolioStats(stats));
     }
