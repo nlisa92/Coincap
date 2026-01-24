@@ -22,16 +22,11 @@ const CurrencyPage = () => {
   const [selectedCurrency, setSelectedCurrency] = useState(null);
 
   const stats = useMemo(() => {
-    if (list.length && items.length) {
-      return calculatePortfolio(items, list);
-    }
-    return null;
+    return calculatePortfolio(items, list);
   }, [list, items]);
 
   useEffect(() => {
-    if (stats) {
-      dispatch(updatePortfolioStats(stats));
-    }
+    dispatch(updatePortfolioStats(stats));
   }, [stats, dispatch]);
 
   const currency = list.find((item) => item.id === id);
